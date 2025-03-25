@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offer Letter Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        .form-container {
+            width: 90%;
+            padding-left: 50px;
+            padding-right: 50px;
+            overflow: auto;
+            padding-bottom: 30px;
+        }
+        header {
+      position: relative;
+      text-align: center;
+      height: 120px; 
+      background-color: #5f06a8;
+      color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      width: 98%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+header p{
+    font-weight: 100;
+      font-size: 18px;
+      margin-top: 10px;
+}
+  
+    @keyframes moveCircles {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
+
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
+
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
+
+
+        .forms {
+            margin-top: 16px;
+        }
+
+        label {
+            display: block;
+            margin-top: 8px;
+            font-size: 16px;
+            margin-left: 8px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            margin-top: 4px;
+            font-size: 14px;
+            border: 1px solid #4955bc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+
+            border-color: #0073e6;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 115, 230, 0.3);
+            outline: none;
+        }
+
+        input[type="file"] {
+
+            padding: 8px;
+           
+            border-radius: 5px;
+
+            border-color: #0073e6;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 115, 230, 0.3);
+            outline: none;
+        }
+
+        input[type="file"]::-webkit-file-upload-button {
+            padding: 8px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+        }
+
+        .button-container button {
+            background: linear-gradient(135deg, #febeff, #0800ff);
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            width: 240px;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #next1 {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .button-container button:hover {
+            background: linear-gradient(135deg, #0d49d3, #fd9dff);
+            transform: scale(1.05);
+        }
+
+        .button-container button:active {
+            transform: scale(0.95);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 0;
+            margin-bottom: 8px;
+            display: none;
+        }
+        
+    </style>
+</head>
+<body>
+       
+<header>
+    <div class="banner-background">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+    <h1>Job Application Form</h1>
+    <p>Submit your job application and get the offer letter</p>
+  </header>
+
+<div class="form-container">
+ 
+    <div class="forms">
+        <form id="offerLetterForm">
+            <div id="personalDetails" class="section active">
+            
+                <label for="department">Select Department</label>
+                <select id="department" required>
+                    <option value="" disabled selected>Select Department</option>
+                    <option value="HR">Human Resources (HR)</option>
+                    <option value="IT">Information Technology (IT)</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Operations">Operations</option>
+                    <option value="Customer Support">Customer Support</option>
+                </select>
+                <label for="jobRole">Job Role</label>
+                <select id="jobRole" required>
+                    <option value="" disabled selected>Select Job Role</option>
+                    <option value="Software Developer">Software Developer</option>
+                    <option value="Web Developer">Web Developer</option>
+                    <option value="Database Administrator">Backend Developer</option>
+                    <option value="Software Tester">Software Tester</option>
+                    <option value="System Administrator">Java Developer</option>
+                    <option value="Security Analyst">Python Developer</option>
+                    <option value="Cloud Engineer">Cloud Engineer</option>
+                    <option value="Data Scientist">Data Scientist</option>
+                    <option value="Business Analyst">Business Analyst</option>
+                    <option value="DevOps Engineer">DevOps Engineer</option>
+                    <option value="Machine Learning Engineer">Machine Learning Engineer</option>
+                    <option value="Project Manager">Project Manager</option>
+                    <option value="Full Stack Developer">Full Stack Developer</option>
+                </select>
+                
+                <label for="branchLocation">Branch Location</label>
+                <select id="branchLocation" required>
+                    <option value="" disabled selected>Select Branch Location</option>
+                    <option value="Pune Branch">Pune</option>
+                    <option value="Bangalore Branch">Bangalore</option>
+                    <option value="Hyderabad Branch">Hyderabad</option>
+                </select>
+            
+                <label for="expectedSalary">Salary <span style="font-size: 14px; color: rgb(52, 49, 49);">(Per annum)</span></label>
+               <input type="number" id="expectedSalary" name="salary" placeholder="Enter Salary" required min="100000" title="Salary must be at least 1,00,000" step="10000">
+
+            
+                <label for="interviewDate">Interview Date</label>
+                <input type="date" placeholder="Interview Date" id="interviewDate" required>
+        
+                <label for="joiningDate">Expected Date of Joining</label>
+                <input type="date" id="joiningDate" required>
+            
+                <label for="employmentType">Employment Type</label>
+                <select id="employmentType" required>
+                    <option value="" disabled selected>Select Employment Type</option>
+                    <option value="Full-Time">Full-Time</option>
+                    <option value="Part-Time">Part-Time</option>
+                    <option value="Internship">Internship</option>
+                    <option value="Contract">Contract</option>
+                </select>
+            
+                <div class="button-container" id="next1">
+                    <button type="button" onclick="goNext()">Next</button>
+                </div>
+            </div>
+            
+            <div id="officeDetails" class="section">
+
+                <label for="FullName">Full Name</label>
+                <input type="text" placeholder="Full Name" id="FullName" required pattern="^(?!\s)(?!.*\s{2,})([A-Za-z]+(?: [A-Za-z]+)*[A-Za-z])$"  minlength="3" maxlength="30"
+                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                
+                <label for="email">Email</label>
+                <input type="email" placeholder="Email Address" id="email" required minlength="3" maxlength="30">
+                
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" required>
+                
+                <label for="mobileNumber">Mobile Number</label>
+                <input type="tel" placeholder="Mobile Number" id="mobileNumber" pattern="[0-9]{10}" required minlength="10" maxlength="10">
+
+                <label for="fatherName">Father's Name</label>
+                <input type="text" placeholder="Father's Name" id="fatherName" required minlength="3" maxlength="30" pattern="^(?!\s)(?!.*\s{2,})([A-Za-z]+(?: [A-Za-z]+)*[A-Za-z])$"
+                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                
+                <label for="permanentAddress">Permanent Address</label>
+                <input type="text" placeholder="Permanent Address" id="permanentAddress" required minlength="5" maxlength="80">
+              
+                <div class="button-container">
+                    <button type="button" onclick="goPrevious()">Previous</button>
+                    <button type="button" onclick="goNext()">Next</button>
+                </div>
+            </div>
+        
+            <div id="educationDetails" class="section">
+                <label for="sscYear">SSC Year of Passing</label>
+                <input type="number" placeholder="Year of Passing" id="sscYear" required min="1985" step="1">
+        
+                <label for="sscPercentage">SSC CGPA or Percentage</label>
+                <input type="number" placeholder="Enter CGPA or Percentage" id="sscPercentage" required min="1" max="10" step="0.1" title="Enter proper CGPA or Percentage">
+        
+                <label for="sscDoc">Upload SSC Document <span style="color: rgb(95, 94, 94);">(only .pdf files allowed)</span></label>
+                <input type="file" id="sscDoc" required accept=".pdf">   
+        
+                <label for="intermediateYear">Intermediate/Diploma Year of Passing</label>
+                <input type="number" placeholder="Year of Passing" id="intermediateYear" required min="1985" step="1">
+        
+                <label for="intermediatePercentage">Intermediate/Diploma CGPA or Percentage</label>
+                <input type="number" placeholder="Enter CGPA or Percentage" id="intermediatePercentage" required min="1" max="10" step="0.1" title="Enter proper CGPA">
+        
+                <label for="intermediateDoc">Upload Intermediate/Diploma Document  <span style="color: rgb(95, 94, 94);">(only .pdf files allowed)</span></label>
+                <input type="file" id="intermediateDoc" required accept=".pdf">
+        
+                <div class="button-container">
+                    <button type="button" onclick="goPrevious()">Previous</button>
+                    <button type="button" onclick="goNext()">Next</button>
+                </div>
+            </div>
+        
+            
+            <div id="higherEducation" class="section">
+                <label for="higherGraduation">Higher Graduation (College/University Name)</label>
+                <input type="text" placeholder="College/University Name" id="higherGraduation" required minlength="5" maxlength="60" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$" title="Only alphabets and single spaces allowed, no leading or trailing spaces.">
+    
+                <label for="registerNumber">Registration Number</label>
+                <input type="text" placeholder="Registration Number" id="registerNumber" required minlength="5" maxlength="10" pattern="^[A-Za-z0-9]+$" title="Only alphanumeric characters allowed, no spaces.">
+    
+                <label for="graduationYear">Graduation Year of Passing</label>
+                <input type="number" placeholder="Year of Passing" id="graduationYear" required min="1985" step="1">
+    
+                <label for="graduationPercentage">Graduation CGPA/Percentage</label>
+                <input type="text" placeholder="Enter CGPA or Percentage" id="graduationPercentage" required pattern="^(100|[1-9]?[0-9]%?|[1-9](\.\d{1,2})?)$" title="Enter CGPA (e.g., 8.5) or Percentage (e.g., 85%).">
+    
+                <label for="graduationDoc">Upload Graduation Document <span style="color: rgb(95, 94, 94);">(only .pdf files allowed)</span></label>
+                <input type="file" id="graduationDoc" required accept=".pdf" onchange="validateFile(this)">
+    
+                <label for="additionalCertifications">Additional Certifications (Name)</label>
+                <input type="text" placeholder="Certification Name" id="additionalCertifications" pattern="^[A-Za-z]+(?: [A-Za-z]+)*$" title="Only alphabets and single spaces allowed, no leading or trailing spaces.">
+    
+                <label for="Additionalfiles">Upload Additional Documents (if any)</label>
+                <input type="file" id="Additionalfiles" accept=".pdf" onchange="validateFile(this)">
+    
+                <div class="button-container">
+                    <button type="button" onclick="goPrevious()">Previous</button>
+                    <button type="button" onclick="goNext()">Next</button>
+                </div>
+            </div>
+    
+            <div id="experienceDetails" class="section">
+                <label for="experienceStatus">Are you an Experienced or Fresher?</label>
+                <select id="experienceStatus" onchange="toggleExperienceFields()">
+                    <option value="fresher">Fresher</option>
+                    <option value="experience">Experienced</option>
+                </select>
+    
+                <div id="experienceFields" style="display: none;">
+                    <label for="yearsOfExperience">Years of Experience</label>
+                    <input type="number" placeholder="Years of Experience" id="yearsOfExperience" min="1" max="40">
+    
+                    <label for="previousCompany">Previous Company Name</label>
+                    <input type="text" placeholder="Previous Company" id="previousCompany" minlength="3" maxlength="45" pattern="^(?!\s)(?!.*\s{2,})([A-Za-z]+(?: [A-Za-z]+)*[A-Za-z])$" title="Only alphabets and single spaces allowed, no leading or trailing spaces.">
+    
+                    <label for="previousJobRole">Previous Job Role</label>
+                    <select id="previousJobRole">
+                        <option value="" disabled selected>Select Job Role</option>
+                        <option value="Software Developer">Software Developer</option>
+                        <option value="Web Developer">Web Developer</option>
+                        <option value="Database Administrator">Database Administrator</option>
+                        <option value="Software Tester">Software Tester</option>
+                        <option value="System Administrator">System Administrator</option>
+                        <option value="Security Analyst">Security Analyst</option>
+                        <option value="Cloud Engineer">Cloud Engineer</option>
+                        <option value="Data Scientist">Data Scientist</option>
+                        <option value="Business Analyst">Business Analyst</option>
+                        <option value="DevOps Engineer">DevOps Engineer</option>
+                        <option value="Machine Learning Engineer">Machine Learning Engineer</option>
+                        <option value="Project Manager">Project Manager</option>
+                        <option value="Full Stack Developer">Full Stack Developer</option>
+                    </select>
+                </div>
+    
+                <div class="button-container">
+                    <button type="button" onclick="goPrevious()">Previous</button>
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+let currentSectionIndex = 0;
+let sections = [];
+
+window.onload = function () {
+    sections = document.querySelectorAll('.section');
+    showSection(currentSectionIndex);
+    setInterviewDateConstraints();
+    setJoiningDateConstraints();
+    setDOBConstraints();
+    populateJobRoleOptions();
+    attachRealTimeValidation();
+    toggleExperienceFields();
+    restrictYearInputs();
+    restrictSalaryInput();
+    restrictExperienceInput();
+    attachFileValidation();
+    attachCGPAValidation();
+};
+
+function showSection(index) {
+    sections.forEach((section, i) => {
+        section.classList.toggle('active', i === index);
+    });
+}
+
+function goNext() {
+    if (!validateSection(currentSectionIndex)) {
+        console.log("Validation failed for section:", currentSectionIndex);
+        return;
+    }
+    if (currentSectionIndex < sections.length - 1) {
+        currentSectionIndex++;
+        showSection(currentSectionIndex);
+    }
+}
+
+function goPrevious() {
+    if (currentSectionIndex > 0) {
+        currentSectionIndex--;
+        showSection(currentSectionIndex);
+    }
+}
+
+function validateSection(index) {
+    let section = sections[index];
+    let inputs = section.querySelectorAll('input[required], select[required]');
+    let isValid = true;
+
+    inputs.forEach(input => {
+        if (!validateInput(input)) {
+            isValid = false;
+        }
+    });
+
+    return isValid;
+}
+
+function validateInput(input) {
+    removeError(input);
+
+    let value = input.value.trim();
+
+    if (!value && input.required) {
+        showError(input, "This field is required!");
+        return false;
+    }
+
+    if (input.id === "email") {
+        if (!validateEmail(value)) {
+            showError(input, "Invalid email format. Only one '.' is allowed before the domain.");
+            return false;
+        }
+        if (isEmailAlreadyUsed(value)) {
+            showError(input, "This email has already been used!");
+            return false;
+        }
+    }
+
+    if (input.id === "expectedSalary") {
+        const salary = parseInt(value, 10);
+        if (isNaN(salary) || salary < 100000) {
+            showError(input, "Salary must be at least ₹1,00,000!");
+            return false;
+        } else if (salary > 99999999) {
+            showError(input, "Salary cannot be more than ₹9,99,99,999!");
+            return false;
+        }
+    }
+
+    if (input.id === "mobileNumber" && !/^[6-9]\d{9}$/.test(value)) {
+        showError(input, "Mobile number must start with 6, 7, 8, or 9 and be 10 digits!");
+        return false;
+    }
+
+    if (input.id === "sscPercentage" || input.id === "intermediatePercentage" || input.id === "graduationPercentage") {
+        if (!validateCGPA(input)) {
+            return false;
+        }
+    }
+
+    if (input.id === "permanentAddress") {
+        if (!validatePermanentAddress()) {
+            showError(input, "Invalid address format!");
+            return false;
+        }
+    }
+
+    if (input.id === "sscYear" || input.id === "intermediateYear" || input.id === "graduationYear") {
+        if (!validateYearInput(input)) {
+            return false;
+        }
+    }
+
+    if (input.id === "yearsOfExperience") {
+        if (!validateExperienceYear(input)) {
+            return false;
+        }
+    }
+
+    if (input.hasAttribute("pattern")) {
+        let pattern = new RegExp(input.getAttribute("pattern"));
+        if (!pattern.test(value)) {
+            showError(input, input.title || "Invalid format!");
+            return false;
+        }
+    }
+
+    if (input.id === "fullName" || input.id === "fatherName" || input.id === "company" || input.id === "graduationCollege") {
+    if (!/^[a-zA-Z]{2,}(?:\s[a-zA-Z]{2,})*$/.test(value)) {
+        showError(input, "Invalid format. Each word must have at least 2 characters.");
+        return false;
+    }
+}
+
+    return true;
+}
+
+function validateEmail(email) {
+    const emailPattern = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email) && (email.split('.').length - 1 <= 1);
+}
+
+function isEmailAlreadyUsed(email) {
+    let existingData = JSON.parse(localStorage.getItem('jobApplications')) || [];
+    return existingData.some(data => data.email === email);
+}
+
+function validatePermanentAddress() {
+    const value = document.getElementById('permanentAddress').value;
+    const regex = /^[a-zA-Z0-9]+(?:(?:[,\-\/:.][a-zA-Z0-9]*)|(?:\s[a-zA-Z0-9]+))*[a-zA-Z0-9]$/;
+    return regex.test(value);
+}
+
+function validateYearInput(input) {
+    const value = parseInt(input.value);
+    const currentYear = new Date().getFullYear();
+
+    if (isNaN(value) || value < 1985 || value > currentYear) {
+        if (!input.classList.contains('has-error')) {
+            showError(input, `Year must be between 1985 and ${currentYear}.`);
+        }
+        return false;
+    }
+
+    const sscYear = document.getElementById("sscYear").value;
+    const interYear = document.getElementById("intermediateYear").value;
+    const gradYear = document.getElementById("graduationYear").value;
+
+    // Validate Intermediate Year
+    if (input.id === "intermediateYear" && sscYear && value <= parseInt(sscYear) + 1) {
+        if (!input.classList.contains('has-error')) {
+            showError(input, "Intermediate year must be at least 2 years after SSC year.");
+        }
+        return false;
+    }
+
+    // Validate Graduation Year
+    if (input.id === "graduationYear" && interYear && value <= parseInt(interYear) + 2) {
+        if (!input.classList.contains('has-error')) {
+            showError(input, "Graduation year must be at least 3 years after Intermediate year.");
+        }
+        return false;
+    }
+
+    removeError(input);
+    return true;
+}
+
+function validateExperienceYear(input) {
+    const value = parseInt(input.value);
+
+    if (isNaN(value) || value < 0 || value > 40) {
+        showError(input, "Experience must be between 0 and 40 years.");
+        return false;
+    }
+
+    removeError(input);
+    return true;
+}
+
+function showError(input, message) {
+    if (!input.classList.contains('has-error')) {
+        input.classList.add('has-error');
+        input.style.border = "2px solid red";
+
+        let errorSpan = document.createElement('span');
+        errorSpan.className = 'error-message';
+        errorSpan.style.color = 'red';
+        errorSpan.style.fontSize = '12px';
+        errorSpan.textContent = message;
+        input.parentNode.insertBefore(errorSpan, input.nextSibling);
+    }
+}
+
+function removeError(input) {
+    if (input.classList.contains('has-error')) {
+        input.classList.remove('has-error');
+        input.style.border = "";
+        let errorSpan = input.nextElementSibling;
+        if (errorSpan && errorSpan.classList.contains('error-message')) {
+            errorSpan.remove();
+        }
+    }
+}
+
+function attachRealTimeValidation() {
+    document.querySelectorAll('input, select').forEach(input => {
+        input.addEventListener('input', () => validateInput(input));
+    });
+}
+
+function restrictYearInputs() {
+    const yearInputs = document.querySelectorAll('input[id="sscYear"], input[id="intermediateYear"], input[id="graduationYear"]');
+
+    yearInputs.forEach(input => {
+        input.addEventListener('keydown', (e) => {
+            if (!/[0-9]|Backspace|ArrowLeft|ArrowRight|ArrowUp|ArrowDown/.test(e.key)) {
+                e.preventDefault();
+            }
+        });
+
+        input.addEventListener('input', (e) => {
+            if (input.value.length > 4) {
+                input.value = input.value.slice(0, 4);
+            }
+            validateYearInput(input);
+        });
+    });
+}
+
+function restrictSalaryInput() {
+    const salaryInput = document.getElementById('expectedSalary');
+
+    if (salaryInput) {
+        salaryInput.addEventListener('input', (e) => {
+            let value = salaryInput.value.replace(/\D/g, '');
+            if (value.length > 8) {
+                value = value.slice(0, 8);
+            }
+            salaryInput.value = value;
+            validateInput(salaryInput);
+        });
+    }
+}
+
+function validateFile(input) {
+    const file = input.files[0];
+    if (file && file.type !== "application/pdf") {
+        alert("Only PDF files are allowed!");
+        input.value = ""; 
+    }
+}
+
+function validateCGPA(input) {
+    const value = input.value.trim();
+    const cgpaPattern = /^(100|[1-9]?[0-9]%?|[1-9](\.\d{1,2})?)$/;
+    if (!cgpaPattern.test(value)) {
+        showError(input, "Invalid CGPA or Percentage format!");
+        return false;
+    }
+    removeError(input);
+    return true;
+}
+
+function attachFileValidation() {
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function () {
+            validateFile(this);
+        });
+    });
+}
+
+function attachCGPAValidation() {
+    const cgpaInput = document.getElementById('graduationPercentage');
+    if (cgpaInput) {
+        cgpaInput.addEventListener('input', function () {
+            validateCGPA(this);
+        });
+    }
+}
+
+function restrictExperienceInput() {
+    const experienceInput = document.getElementById('yearsOfExperience');
+
+    if (experienceInput) {
+        experienceInput.addEventListener('input', (e) => {
+            let value = experienceInput.value.replace(/\D/g, '');
+            if (value.length > 2) {
+                value = value.slice(0, 2);
+            }
+            experienceInput.value = value;
+            validateInput(experienceInput);
+        });
+    }
+}
+
+function populateJobRoleOptions() {
+    const jobRoleSelect = document.getElementById('jobRole');
+    const jobRoles = [
+        "Web Developer",
+        "Database Administrator",
+        "Software Tester",
+        "System Administrator",
+        "Security Analyst",
+        "Cloud Engineer",
+        "Data Scientist",
+        "Business Analyst",
+        "DevOps Engineer",
+        "Machine Learning Engineer",
+        "Project Manager",
+        "Full Stack Developer"
+    ];
+
+    jobRoles.forEach(role => {
+        let option = document.createElement('option');
+        option.value = role;
+        option.textContent = role;
+        jobRoleSelect.appendChild(option);
+    });
+}
+
+document.getElementById('offerLetterForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    let isFormValid = true;
+    sections.forEach((section, index) => {
+        if (!validateSection(index)) {
+            isFormValid = false;
+        }
+    });
+
+    if (!isFormValid) {
+        alert("Please fill out all required fields correctly.");
+        return;
+    }
+
+    let email = document.getElementById('email').value.trim();
+    if (isEmailAlreadyUsed(email)) {
+        alert("This email has already been used!");
+        return;
+    }
+
+    saveFormData();
+
+    // Display success message
+    document.querySelector('.forms').innerHTML = `
+        <div style="text-align: center; padding: 20px;">
+            <h2>Form Submitted Successfully!</h2>
+            <p>Thank you for your submission. Your data has been saved.</p>
+        </div>
+    `;
+
+    // Submit the form to the server
+    this.submit();
+});
+
+function saveFormData() {
+    let formData = {};
+    document.querySelectorAll('input, select').forEach(input => {
+        if (input.type !== 'file') {
+            formData[input.id] = input.value.trim();
+        }
+    });
+
+    let existingData = JSON.parse(localStorage.getItem('jobApplications')) || [];
+    existingData.push(formData);
+    localStorage.setItem('jobApplications', JSON.stringify(existingData));
+}
+
+function toggleExperienceFields() {
+    const experienceStatus = document.getElementById('experienceStatus');
+    const experienceFields = document.getElementById('experienceFields');
+
+    if (experienceStatus && experienceFields) {
+        experienceFields.style.display = experienceStatus.value === 'experience' ? 'block' : 'none';
+
+        experienceStatus.addEventListener('change', () => {
+            experienceFields.style.display = experienceStatus.value === 'experience' ? 'block' : 'none';
+        });
+    }
+}
+
+function setDOBConstraints() {
+    let dobInput = document.getElementById("dob");
+
+    if (dobInput) {
+        let today = new Date();
+        let minDate = new Date(today.getFullYear() - 60, today.getMonth(), today.getDate());
+        let maxDate = new Date(today.getFullYear() - 20, today.getMonth(), today.getDate());
+
+        dobInput.setAttribute("min", minDate.toISOString().split("T")[0]);
+        dobInput.setAttribute("max", maxDate.toISOString().split("T")[0]);
+
+        dobInput.addEventListener("input", function () {
+            let dobDate = new Date(this.value);
+            let age = today.getFullYear() - dobDate.getFullYear();
+
+            if (today.getMonth() < dobDate.getMonth() ||
+                (today.getMonth() === dobDate.getMonth() && today.getDate() < dobDate.getDate())) {
+                age--;
+            }
+
+            if (age < 20 || age > 60) {
+                this.style.border = "2px solid red";
+                this.setCustomValidity("Your age must be between 20 and 60 years.");
+            } else {
+                this.style.border = "";
+                this.setCustomValidity("");
+            }
+        });
+    }
+}
+
+function setInterviewDateConstraints() {
+    let today = new Date();
+    let sixMonthsAgo = new Date();
+    sixMonthsAgo.setMonth(today.getMonth() - 6);
+
+    document.getElementById("interviewDate").setAttribute("min", sixMonthsAgo.toISOString().split("T")[0]);
+    document.getElementById("interviewDate").setAttribute("max", today.toISOString().split("T")[0]);
+}
+
+function setJoiningDateConstraints() {
+    let today = new Date();
+    let fourMonthsAhead = new Date();
+    fourMonthsAhead.setMonth(today.getMonth() + 4);
+
+    document.getElementById("joiningDate").setAttribute("min", today.toISOString().split("T")[0]);
+    document.getElementById("joiningDate").setAttribute("max", fourMonthsAhead.toISOString().split("T")[0]);
+}
+    </script>
+</body>
+</html>
+
+
